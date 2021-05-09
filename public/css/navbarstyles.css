@@ -1,0 +1,44 @@
+header {
+    z-index: 10;
+}
+.navbar{
+  min-height:33px !important;
+  margin-bottom:0;
+  border-radius: 0;
+  background:#51D55E;
+}
+.header-banner {
+    background-color: #333;
+    background: orange;
+    width: 100%;
+    height: 25px;
+}
+
+#bs-example-navbar-collapse-1.collapse li a:hover {
+    color: orange;
+}
+ul.navbar-nav{
+   float: left;
+   display: inline-block;
+}
+
+ul.navbar-nav > li{
+   float: none;
+   display: inline-block;
+}
+
+ul.navbar-nav > li:first-child{
+   padding-left: 0;
+}
+
+ul.navbar-nav > li:hover > a,
+ul.navbar-nav > li.active > a{
+  color: #FFA800;
+  position: relative;
+}
+
+
+ul.navbar-nav > li{
+   padding: 0 10px;
+   position: relative;
+}
