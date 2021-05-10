@@ -9,11 +9,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HOTDOT</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
  <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -54,31 +55,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
-             <i class="fa fa-university nav-icon" aria-hidden="true"></i>
+            <router-link to="/dashboard" class="nav-link">
+             <i class="fa fa-university nav-icon text-blue" aria-hidden="true"></i>
               <p>
                 Dashboard
-              </p>
+              </router-link>
             </a>
         </li>
        <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="fa fa-users nav-icon" aria-hidden="true"></i>
+            <a href="#" class="nav-link">
+              <i class="fa fa-users nav-icon text-orange" aria-hidden="true"></i>
               <p>
               Customer Manager
-                <i class="right fas fa-angle-left nav-icon"></i>
+                <i class="right fas fa-angle-left nav-icon text-orange"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="fa fa-user nav-icon" aria-hidden="true"></i>
+                  <i class="fa fa-user nav-icon text-orange" aria-hidden="true"></i>
                   <p>Cyber Customers</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                   <i class="fa fa-user nav-icon" aria-hidden="true"></i>
+                   <i class="fa fa-user nav-icon text-orange" aria-hidden="true"></i>
                   <p>Internet Customers</p>
                 </a>
               </li>
@@ -93,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
         </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
              <i class="fa fa-product-hunt nav-icon" aria-hidden="true"></i>
               <p>
               Products
@@ -117,21 +118,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/users" class="nav-link">
              <i class="fa fa-cog nav-icon" aria-hidden="true"></i>
               <p>
               Manage Users
               </p>
-            </a>
+            </router-link>
         </li>
 
          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fa fa-power-off nav-icon" aria-hidden="true"></i>
-              <p>
-              Logout
+            <a class="nav-link" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+                  <i class="fa fa-power-off nav-icon text-red" aria-hidden="true"></i>
+               <p>
+              {{ __('Logout') }}
               </p>
-            </a>
+              </a>
+       
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
         </li>
        
         </ul>
@@ -150,8 +157,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-      
-      
+      <router-view></router-view>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -171,11 +177,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
-    </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Hotdot Cyber
   </footer>
 </div>
 <!-- ./wrapper -->

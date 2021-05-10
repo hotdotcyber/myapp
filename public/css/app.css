@@ -51777,6 +51777,18 @@ a.text-muted:hover {
   color: #3f474e;
 }@charset "UTF-8";
 
+.text-blue {
+  color: #3490dc;
+}
+
+.text-red {
+  color: #e3342f;
+}
+
+.text-orange {
+  color: #f6993f;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -68799,5 +68811,10 @@ readers do not read off random characters that represent icons */
 .fab {
   font-family: "Font Awesome 5 Brands";
   font-weight: 400;
+}
+
+.router-link-exact-active {
+  background-color: #3f6791;
+  color: #fff !important;
 }
 

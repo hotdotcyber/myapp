@@ -30,3 +30,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/message', 'MessageController@message')->name('message');
+Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-\/_.]+)?' );
