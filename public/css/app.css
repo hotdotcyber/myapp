@@ -51789,6 +51789,10 @@ a.text-muted:hover {
   color: #f6993f;
 }
 
+.text-green {
+  color: #38c172;
+}
+
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -68816,5 +68820,30 @@ readers do not read off random characters that represent icons */
 .router-link-exact-active {
   background-color: #3f6791;
   color: #fff !important;
+}
+
+thead,
+tbody {
+  display: block;
+}
+
+tbody {
+  height: 600px;
+  /* Just for the demo          */
+  overflow-y: auto;
+  /* Trigger vertical scroll    */
+  overflow-x: hidden;
+  /* Hide the horizontal scroll */
+}
+
+table {
+  width: 100%;
+  /* Optional */
+}
+
+tbody td,
+thead th {
+  width: 20%;
+  /* Optional */
 }
 

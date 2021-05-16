@@ -7,11 +7,14 @@
 require('./bootstrap');
 window.Vue = require('vue');
 import VueRouter from 'vue-router'
+import Form from 'vform'
+window.Form=Form;
 Vue.use(VueRouter)
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
     { path: '/profile', component: require('./components/Profile.vue').default },
-    { path: '/users', component: require('./components/Users.vue').default }
+    { path: '/users', component: require('./components/Users.vue').default },
+    { path: '/cyberCustomers', component: require('./components/CyberComponent.vue').default }
   ]
   const router = new VueRouter({
     mode: 'history',

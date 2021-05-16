@@ -17,4 +17,19 @@ $fa-font-path:"../webfonts";
     background-color:#3f6791;
     color:#fff!important;
 }
+thead, tbody { display: block; }
 
+tbody {
+    height: 600px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+
+table {
+    width: 100%; /* Optional */
+}
+
+tbody td, thead th {
+    width: 20%;  /* Optional */
+}

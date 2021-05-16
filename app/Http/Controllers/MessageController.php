@@ -9,25 +9,23 @@ class MessageController extends Controller
     public function message(Request $request){
     	
     	$phoneno=$request->all();
-     	$phoneno=$phoneno['phoneno'];
-    //	dd($phoneno);
+        $phoneno=$phoneno['phonenumber'];
+    	//dd($phoneno);
     	$mobileNumber=implode(',',$phoneno);
-    	//print_r($mobileNumber);
+    	//dd($mobileNumber);
     	//$authkey='';
     	//$senderId=22136;
     //	$route=4;
         //sms
-			
-			
-			$recipients=$mobileNumber;
+			//$recipients=$mobileNumber;
 			//Set SMS recipients and content
+			
 			$data = array(
 				'api_key' => "608f9493a7a76",
-			    'message' => 'Hotdot Cyber Sms Test',
+			    'message' => 'Hotdot Cyber,Have you filed KRA Returns? Dont worry we can help. For more info call 0727348891 or visit our website https://hotdotcyber.co.ke',
 			    'username'=>'hotdot',
 			    'sender_id' => 22136,
-			    'phone' => 254727348891,
-
+			    'phone' => $mobileNumber,
 			    //'route'=>$route,
 			);
 			$url = "http://bulksms.mobitechtechnologies.com/api/sendsms";
@@ -42,7 +40,7 @@ class MessageController extends Controller
 			$json = json_decode($result);
 			print_r($data['sender_id']);
         //end
-
+        
 
     	//echo $phoneno;
     }

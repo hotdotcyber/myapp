@@ -4,10 +4,24 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Users table</h3>
-
+                <h3 class="card-title">Customers</h3>
+                <form  enctype="multipart/form-data">
+                  <div class="form-group">
+                  <table class="table">
+                    <tr>
+                    <td width="40%" align="right"><label>Select File for Upload</label></td>
+                    <td width="30">
+                      <input type="file"  @change="getExcelData" name="select_file" id="select_file" ref="select_file"/>
+                    </td>
+                  
+                    </tr>
+                  </table>
+                  </div>
+                </form>
                 <div class="card-tools">
-                    <button class="btn btn-success" data-toggle="modal" data-target="#addNewModal">Add New <i class="fas fa-plus ml-1"></i></button>
+                    <button class="btn btn-warning" @click="sendsms">Send Sms <i class="fa fa-upload" aria-hidden="true"></i></button>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#addNewModal">Upload data <i class="fa fa-upload" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addNewModal">Add New <i class="fas fa-plus ml-1"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -15,18 +29,17 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>Select</th>
                       <th>Name</th>
                       <th>Phone Number</th>
                       <th>Type</th>
                       <th>Email</th>
-                    
                       <th>Modify</th>
                     </tr>
                   </thead>
                   <tbody>
                      <tr v-for="user in users.data" :key="user.id">
-                      <td>{{user.id}}</td>
+                      <td><input type="checkbox" :value="user.phoneno" v-model="phonenumber" class="checkbox"></td>        
                       <td>{{user.name}}</td>
                       <td>{{user.phoneno}}</td>
                       <td>{{user.type}}</td>
@@ -36,8 +49,9 @@
                   </tbody>
                 </table>
               </div>
-              <!-- /.card-body -->
             </div>
+              <!-- /.card-body -->
+        
             <!-- /.card -->
           </div>
         </div>
@@ -87,6 +101,21 @@
             </div>
         </div>
         </div>
+        
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewModalLongTitle">Add New</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+          
+            </div>
+        </div>
+        </div>
+       
     </div>
     
 </template>
@@ -96,26 +125,57 @@
       data() {
       return {
       users:{},  
+      phonenumber:[],
+       file:'',
+       select_file:'',
       form: new Form({
       name:'',
       email:'',
       phoneno:'',
-      password:'',
       type:''
     })
-      }  
+      }
+        
        },
       methods:{
         loadUser(){
-          axios.get("api/user").then((
+          axios.get("api/cybercustomer").then((
             {data})=>(this.users=data));
         },
         createUser(){
-          this.form.post('api/user');
+          this.form.post('api/cybercustomer');
           this.loadUser();
-        }
+        },
+         sendsms(){
+        
+           axios.post('/message',{
+             phonenumber:this.phonenumber,
+            
+            }) .then(response => { 
+         
+          })
 
-      },
+          //  });
+        // console.log("you clicked me");
+         
+        },
+
+         getExcelData(e){
+    this.select_file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('select_file',  this.select_file);
+    console.log(formData);
+   axios.post("/import",formData,{
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }}).then(function(response){
+          }.catch(error => {
+             console.log("Wrong Data Entry"+error.response)
+           })
+          
+          .bind(this))
+    }
+    },
         created() {
           this.loadUser();
             console.log('Component mounted.')

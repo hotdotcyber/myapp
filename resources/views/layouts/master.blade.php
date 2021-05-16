@@ -23,6 +23,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+      <li>
+  <div class="input-group input-group-sm" style="width: 200px;">
+    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+      <div class="input-group-append">
+         <button type="submit" class="btn btn-default">
+           <i class="fas fa-search"></i>
+        </button>
+  </div>
+</div>
+      </li>
     </ul>
     <!-- Right navbar links -->
   </nav>
@@ -72,10 +82,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <router-link to="/cyberCustomers" class="nav-link">
                   <i class="fa fa-user nav-icon text-orange" aria-hidden="true"></i>
                   <p>Cyber Customers</p>
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
